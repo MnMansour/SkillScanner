@@ -1,0 +1,30 @@
+.container{
+    background: #75cc93;
+}
+h1{
+    color: white;
+    font-size: 3em;
+}
+.cards{
+    background: white;
+    border-radius: 10px
+}
+.card{
+    background: rgb(255, 255, 255);
+    height: 180px;
+    overflow: auto;
+    border-radius: 10px    
+}
+
+.filter{
+    background: rgba(255, 255, 255,0.50);
+    border-radius: 10px
+}
+
+.card:hover{
+    background: rgb(240, 250, 241)
+}
+
+.margin5{
+    margin: 5px;
+}

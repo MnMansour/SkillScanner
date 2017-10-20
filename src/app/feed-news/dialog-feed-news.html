@@ -1,0 +1,11 @@
+
+<div>
+  <h2 class="margin5" >{{data.title}}</h2>
+  <img src={{data.photo}} alt={{data.publisher}}>
+  <p class="margin5" >{{data.description}}</p>
+  <div fxFlayout>
+     <h5 class="margin5" fxFlex="20%">{{data.publisher}}</h5>
+     <h5 class="margin5" fxFlex="40%">{{data.region | uppercase}}, &nbsp;{{data.area | uppercase}}</h5>  
+     <h5>{{data.date | date}}</h5>     
+  </div>
+</div> 

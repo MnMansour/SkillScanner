@@ -1,0 +1,52 @@
+<div class="container" >
+  <div fxLayout>
+      <h1 fxFlexOffset="15px">Jobs</h1>
+  </div>
+  
+  <div fxLayout >
+    <div 
+     fxFlex="80%" 
+     fxFlex.xs="80%" 
+     fxFlexOffset="3%"
+     class="cards">
+     
+     <input type="text"  placeholder="Serch" [(ngModel)]="term">     
+     <div  *ngFor="let job of jobs | orderBy:'date':order |orderBy:'date':true | filter:term | filter:myState | filter:cPartner " class="card"
+      (click)= "select(job);openDialog()">
+          <img fxFlex='20%' src={{job.photo}} alt={{job.publisher}}>
+          <hr>
+          <div fxFlex>
+            <h2 class="margin5">{{job.title}}</h2>
+            <div fxFlayout>
+                <h5 class="margin5" fxFlex="40%">{{job.region | uppercase}}, &nbsp;{{job.area | uppercase}}</h5>  
+                <h5 class="margin5" fxFlex="40%">Deadline:&nbsp;{{job.deadline | date}}</h5>                  
+            </div>         
+            <p class="margin5" >{{job.description | slice:0:200 }}&nbsp;...</p>
+            <div fxFlayout>
+              <h5 class="margin5" fxFlex="10%">{{job.publisher}}</h5>
+              <h5 class="margin5" fxFlex="10%">{{job.date | date}}</h5>  
+          </div>
+          </div> 
+      </div>
+    </div>
+    <div fxFlex fxFlexOffset="1%" class="filter">
+      <h2>Filters:&nbsp;&nbsp;&nbsp;</h2>
+      <hr>
+      <mat-form-field>
+        <mat-select placeholder="By Country" [(ngModel)]="myState">
+          <mat-option *ngFor="let country of countries" [value]="country.value" >{{ country.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="By Date" [(ngModel)]="order">
+          <mat-option *ngFor="let date of dates"[value]="date.value">{{date.name}}</mat-option>          
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="By Publisher" [(ngModel)]="cPartner">
+          <mat-option *ngFor="let publisher of publishers" [value]="publisher" >{{publisher}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>    
+  </div>
+</div>

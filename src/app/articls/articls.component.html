@@ -1,0 +1,53 @@
+<div class="container" >
+  <div fxLayout>
+      <h1 fxFlexOffset="15px">Articles</h1>
+  </div>
+  
+  <div fxLayout >
+    <div 
+     fxFlex="80%" 
+     fxFlex.xs="80%" 
+     fxFlexOffset="3%"
+     class="cards">
+     
+     <input type="text"  placeholder="Serch" [(ngModel)]="term">     
+     <div  *ngFor="let atricle of articles | orderBy:'date':order |orderBy:'date':true
+      | filter:term | filter:myState | filter:cPartner; let l = count " class="card"
+      (click)= "select(atricle);openDialog()">
+
+          <img fxFlex='20%' src={{atricle.photo}} alt={{atricle.publisher}}>
+          <hr>
+          <div fxFlex>
+            <h2 class="margin5">{{atricle.title}}{{l}}</h2>
+            <div fxFlayout>
+                <h4 class="margin5" fxFlex="40%">{{atricle.publisher}}</h4>
+                <h5 class="margin5" fxFlex="40%">{{atricle.region | uppercase}}, &nbsp;{{atricle.area | uppercase}}</h5>  
+            </div>         
+            <p class="margin5" >{{atricle.description | slice:0:200 }}&nbsp;...</p>
+            <h5>{{atricle.date | date}}</h5>
+          </div> 
+          
+      </div>
+    </div>
+    <div fxFlex fxFlexOffset="1%" class="filter">
+      <h2 class="margin5">Filters:&nbsp;&nbsp;&nbsp;</h2>
+      <h1>{{length}}{{l}}</h1>
+      <hr>
+      <mat-form-field class="margin5">
+        <mat-select placeholder="Country" [(ngModel)]="myState">
+          <mat-option *ngFor="let country of countries" [value]="country.value" >{{ country.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="margin5">
+        <mat-select placeholder="By Date" [(ngModel)]="order">
+          <mat-option *ngFor="let date of dates"[value]="date.value">{{date.name}}</mat-option>          
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="margin5">
+        <mat-select placeholder="Publisher" [(ngModel)]="cPartner">
+          <mat-option *ngFor="let publisher of publishers" [value]="publisher" >{{publisher}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>    
+  </div>
+</div>
